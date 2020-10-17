@@ -1,0 +1,3 @@
+  正在确定要还原的项目…
+C:\Program Files\dotnet\sdk\3.1.402\NuGet.targets(128,5): error : 无法加载源 https://api.nuget.org/v3/index.json 的服务索引。 [C:\Users\Public\Documents\DevExpress Demos 20.1\DevExtreme\ASP.NET MVC Controls\WidgetsGallery\ASP.NET Core\DevExtreme.NETCore.Demos.sln]
+C:\Program Files\dotnet\sdk\3.1.402\NuGet.targets(128,5): error :   不知道这样的主机。 [C:\Users\Public\Documents\DevExpress Demos 20.1\DevExtreme\ASP.NET MVC Controls\WidgetsGallery\ASP.NET Core\DevExtreme.NETCore.Demos.sln]

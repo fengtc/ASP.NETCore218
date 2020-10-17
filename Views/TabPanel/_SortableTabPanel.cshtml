@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DevExtreme.NETCore.Demos.Models.DataGrid.Employee>
+@(Html.DevExtreme().TabPanel()
+    .ID("tabPanel")
+    .Height(410)
+    .DataSource(Model.Where(i => i.ID <= 3))
+    .ItemTitleTemplate(new JS("titleTemplate"))
+    .ItemTemplate(@<text>
+        <div class="employeeInfo">
+            <img class="employeePhoto" src="<%- Picture %>" />
+            <p class="employeeNotes"><b>Position: <%- Position %></b><br /><%- Notes %></p>
+        </div>
+        <div class="caption"><%- FirstName %> <%- LastName  + "'" %>s Tasks:</div>
+        <div class="task-list">
+            @(Html.DevExtreme().List()
+                .DataSource(new JS("getEmployeeTasks(ID)"))
+                .Disabled(true)
+                .ShowSelectionControls(true)
+                .SelectionMode(ListSelectionMode.Multiple)
+                .SelectedItems(new JS("getCompletedTasks(ID)"))
+                .ItemTemplate(new JS("taskTemplate"))
+            )
+        </div>
+    </text>)
+        .DeferRendering(false)
+        .ShowNavButtons(true)
+        .RepaintChangesOnly(true)
+        .OnInitialized("onInitialized")
+)
+
+<script>
+    function titleTemplate(itemData, itemIndex, itemElement) {
+        itemElement.append(
+            $("<span>")
+                .text(`${itemData.FirstName} ${itemData.LastName}`)
+        );
+        if (tabPanel.option("items").length !== 1) {
+            itemElement.append(
+                $("<i>")
+                    .addClass("dx-icon")
+                    .addClass("dx-icon-close")
+                    .click(function () { closeButtonHandler(itemData); })
+            );
+        }
+    }
+
+    function taskTemplate(itemData, itemIndex, itemElement) {
+        itemElement.append(
+            $("<div>").text(itemData.Subject)
+        );
+    }
+
+    function getEmployeeTasks(id) {
+        return allEmployees.filter(function (employee) { return employee.ID === id })[0].Tasks
+    }
+
+    function getCompletedTasks(id) {
+        return getEmployeeTasks(id).filter(function (task) { return task.Status === "Completed" });
+    }
+</script>
