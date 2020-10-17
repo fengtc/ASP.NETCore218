@@ -4,6 +4,8 @@
     <DefineConstants>$(DefineConstants);DB_SQLITE</DefineConstants>
     <Configurations>Debug;Release;Test</Configurations>
     <LangVersion>7.1</LangVersion>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
@@ -13,6 +15,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.11" />
     <PackageReference Include="DevExtreme.AspNet.Data" Version="2.6.1" />
     <PackageReference Include="DevExtreme.AspNet.Core" Version="20.1.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
   </ItemGroup>
   <ItemGroup>
@@ -27,6 +30,9 @@
     </DotnetPublishFiles>
   </ItemGroup>
   <ItemGroup>
+    <None Update="Northwind.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Northwind.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
