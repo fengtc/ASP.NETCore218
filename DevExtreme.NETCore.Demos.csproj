@@ -41,5 +41,8 @@
     <None Update="FileManagement.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="NuGet\DevExtreme.AspNet.Core.20.1.8.nupkg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
